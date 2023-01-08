@@ -1,3 +1,3 @@
-Entregable 6 para el modulo React en Academlo
+# e-Commerce-academlo
 
-# e-commerce-academlo
+Entregable 6 para el modulo React en Academlo
