@@ -3,57 +3,80 @@ import { useDispatch, useSelector } from "react-redux";
 import Categories from "../components/home/Categories";
 import ProductCard from "../components/home/ProductCard";
 import { getAllProducts } from "../store/slices/products.slice";
+import "./styles/home.css";
 
 const Home = () => {
-  //Estado para la categoria seleccionada
-  const [category, setCategory] = useState("");
-  //Estado para el nombre del producto
   const [nameProduct, setNameProduct] = useState("");
-  //Estado para los productos filtrados
-  const [filterProducts, setFilterProducts] = useState([]);
-  //Obtenemos los productos del store
+  const [category, setCategory] = useState("");
+  const [firterProducts, setFirterProducts] = useState([]);
   const products = useSelector((state) => state.products);
-  //Obtenemos el dispatch
+  const [clickFilter, setClickFilter] = useState(false);
+
   const dispatch = useDispatch();
-  //Handle para el submit del formulario de busqueda de productos por nombre
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newName = e.target.nameProduct.value;
     setNameProduct(newName);
   };
-  //Obtenemos los productos
+
+  const handleClickFilter = () => {
+    setClickFilter(!clickFilter);
+  };
+
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);
-  //Filtramos los productos
+
   useEffect(() => {
-    setFilterProducts(products);
+    setFirterProducts(products);
   }, [products]);
-  //Filtramos los productos por nombre y categoria
+
   useEffect(() => {
     const newProducts = products.filter(
       (product) =>
         product.title.includes(nameProduct) &&
         (product.category.id === category || category === "")
     );
-    setFilterProducts(newProducts);
+    setFirterProducts(newProducts);
   }, [nameProduct, category]);
 
   return (
-    <main>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input id="nameProduct" type="text" placeholder="What're ya buyin?" />
-          <button>
-            <i className="bx bx-search"></i>
-          </button>
-        </div>
-      </form>
-      <Categories setCategory={setCategory} />
-      <section>
-        {filterProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+    <main className={"home"}>
+      <aside
+        className={
+          clickFilter
+            ? "home__aside home__section-btnfilter-true"
+            : "home__aside home__section-btnfilter-false"
+        }
+      >
+        <Categories setCategory={setCategory} />
+      </aside>
+
+      <section className="home__section">
+        <form className="home__form" onSubmit={handleSubmit}>
+          <div className="home__form-div">
+            <input
+              className="home__form-input"
+              type="text"
+              id="nameProduct"
+              placeholder="What are you lookin for?"
+            />
+            <button className="home__form-btn">
+              <i className="bx bx-search-alt-2"></i>
+            </button>
+          </div>
+        </form>
+
+        <button onClick={handleClickFilter} className="home__section-btnfilter">
+          <i className="bx bx-filter-alt"></i> Filters
+        </button>
+
+        <section className="home__containerProducts">
+          {firterProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </section>
       </section>
     </main>
   );

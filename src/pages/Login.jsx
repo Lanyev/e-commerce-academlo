@@ -1,56 +1,72 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUserThunk } from "../store/slices/userInfo.slice";
+import { loginUserThunk, logOutThunk } from "../store/slices/userInfo.slice";
+import "./styles/login.css";
 
 const Login = () => {
-  //Creamos el hook para el token
   const { token, user } = useSelector((state) => state.userInfo);
-  console.log(token);
-  //Creamos el hook para el formulario
   const { register, handleSubmit } = useForm();
-  //Creamos el hook para el dispatch
   const dispatch = useDispatch();
-  //Creamos la funcion que se ejecutara al enviar el formulario
+
   const submit = (data) => {
-    console.log(data);
     dispatch(loginUserThunk(data));
   };
 
+  const handleClickLogOut = () => {
+    dispatch(logOutThunk());
+    alert("thanks for visiting, come back soon");
+  };
+
   return (
-    <main>
+    <main className="login">
       {token ? (
-        <section>
-          <i className="bx bx-user-circle"></i>
-          <h3>{`${user?.firstName} ${user?.lastName}`}</h3>
-          <button>Logout</button>
+        <section className="login__loged">
+          <i className="login__loged-ico bx bx-user-circle"></i>
+          <h3 className="login__loged-name">{`${user.firstName} ${user.lastName}`}</h3>
+          <button className="login__loged-btn" onClick={handleClickLogOut}>
+            Logout
+          </button>
         </section>
       ) : (
-        <form onSubmit={handleSubmit(submit)}>
-          <h3>Welcome! Enter your email and password to continue.</h3>
-          <div>
-            <h4>Test Data</h4>
-            <p>
+        <form className="login__from" onSubmit={handleSubmit(submit)}>
+          <h3 className="login__title">
+            Welcome! Entre your email and password to continue
+          </h3>
+          <div className="login__container-test">
+            <h4 className="login__test-title">Test data</h4>
+            <p className="login__test-email">
+              <i class="bx bxs-envelope-open"></i> john@gmail.com
+            </p>
+            <p className="login__test-password">
+              <i className="bx bxs-lock-open-alt"></i> john1234
+            </p>
+          </div>
+          <div className="login__field">
+            <div>
               <i className="bx bx-envelope"></i>
-              max@gmail.com
-            </p>
-            <p>
+              <label className="login__label"> Email</label>
+            </div>
+            <input
+              className="login__input"
+              type="email"
+              {...register("email")}
+            />
+          </div>
+          <div className="login__field">
+            <div>
               <i className="bx bx-lock-alt"></i>
-              pass1234
-            </p>
+              <label className="login__label"> Password</label>
+            </div>
+            <input
+              className="login__input"
+              type="password"
+              {...register("password")}
+            />
           </div>
-          <div>
-            <label>Email</label>
-            <input type="email" {...register("email")} />
-          </div>
-          <div>
-            <label>Password</label>
-            <input type="password" {...register("password")} />
-          </div>
-          <button>Login</button>
-          <p>
-            Don't have an account?
-            <span> Sign Up</span>
+          <button className="login__btn">Login</button>
+          <p className="login__text-footer">
+            Don't have an account? <span>Sign up</span>
           </p>
         </form>
       )}

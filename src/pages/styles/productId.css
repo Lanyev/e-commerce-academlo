@@ -1,0 +1,35 @@
+:root {
+  /* Colors */
+  --color-blue: #457b9d;
+  --color-blue-light: #a8dadc;
+  --color-blue-dark: #1d3557;
+  --color-red: #e63946;
+  --color-black: #000000;
+  --color-white: #ffffff;
+}
+
+.productId {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 10px;
+}
+
+.productId__path {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.productId__home {
+  color: var(--color-white);
+}
+
+.productId__piont {
+  color: var(--color-red);
+  font-size: 8px;
+}
+
+.productId__nameProduct {
+  color: var(--color-white);
+}

@@ -1,12 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import "./style/categories.css";
 
 const Categories = ({ setCategory }) => {
-  //Estado para las categorias
   const [categories, setCategories] = useState([]);
-  //Handle para el click en una categoria
+  const [clickCategories, setClickCategories] = useState(true);
+
   const handleClickCategory = (id) => {
     setCategory(id);
+  };
+
+  const handleClick = () => {
+    setClickCategories(!clickCategories);
   };
 
   useEffect(() => {
@@ -17,11 +22,24 @@ const Categories = ({ setCategory }) => {
       .then((res) => setCategories(res.data.data.categories))
       .catch((err) => console.log(err));
   }, []);
-
   return (
-    <section>
-      <ul>
-        <li onClick={() => handleClickCategory("")}>All Products</li>
+    <section className="categories">
+      <div onClick={handleClick} className="categories__title">
+        <span>Category</span>
+        <i
+          className={
+            clickCategories
+              ? "arrow1 bx bxs-down-arrow"
+              : "arrow2 bx bxs-down-arrow"
+          }
+        ></i>
+      </div>
+      <ul
+        className={
+          clickCategories ? "categories__list" : "categories__list-none"
+        }
+      >
+        <li onClick={() => handleClickCategory("")}>All products</li>
         {categories.map((category) => (
           <li
             onClick={() => handleClickCategory(category.id)}
