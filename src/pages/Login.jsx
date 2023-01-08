@@ -31,10 +31,10 @@ const Login = () => {
       ) : (
         <form className="login__from" onSubmit={handleSubmit(submit)}>
           <h3 className="login__title">
-            Welcome! Entre your email and password to continue
+            Welcome! Enter your email and password to continue
           </h3>
           <div className="login__container-test">
-            <h4 className="login__test-title">Test data</h4>
+            <h4 className="login__test-title"></h4>
             <p className="login__test-email">
               <i class="bx bxs-envelope-open"></i> john@gmail.com
             </p>
@@ -66,7 +66,8 @@ const Login = () => {
           </div>
           <button className="login__btn">Login</button>
           <p className="login__text-footer">
-            Don't have an account? <span>Sign up</span>
+            Don't have an account? <br /> <span> "Wont working"</span>
+            <span>Sign up</span>
           </p>
         </form>
       )}
