@@ -12,13 +12,15 @@
   border: 1px solid var(--color-blue);
   padding: 10px;
   border-radius: 12px;
-  color: #515151;
+  color: var(--color-white);
   overflow: hidden;
+  background: var(--color-blue);
 }
 
 .purchaseCard__data {
   margin: 0 0 15px 0;
   font-size: 18px;
+  color: var(--color-white);
 }
 
 .purchaseCard__line {
@@ -30,4 +32,5 @@
 
 .purchaseCard__list {
   padding: 10px;
+  color: var(--color-white);
 }

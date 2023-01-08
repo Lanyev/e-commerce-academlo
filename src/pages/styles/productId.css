@@ -19,6 +19,8 @@
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+  padding-top: 60px;
+  /* padding-bottom: 50px; */
 }
 
 .productId__home {

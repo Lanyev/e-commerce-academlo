@@ -8,7 +8,7 @@ import "./styles/home.css";
 const Home = () => {
   const [nameProduct, setNameProduct] = useState("");
   const [category, setCategory] = useState("");
-  const [firterProducts, setFirterProducts] = useState([]);
+  const [filterProducts, setFilterProducts] = useState([]);
   const products = useSelector((state) => state.products);
   const [clickFilter, setClickFilter] = useState(false);
 
@@ -29,7 +29,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    setFirterProducts(products);
+    setFilterProducts(products);
   }, [products]);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const Home = () => {
         product.title.includes(nameProduct) &&
         (product.category.id === category || category === "")
     );
-    setFirterProducts(newProducts);
+    setFilterProducts(newProducts);
   }, [nameProduct, category]);
 
   return (
@@ -60,7 +60,7 @@ const Home = () => {
               className="home__form-input"
               type="text"
               id="nameProduct"
-              placeholder="What are you lookin for?"
+              placeholder="What're ya buyin?"
             />
             <button className="home__form-btn">
               <i className="bx bx-search-alt-2"></i>
@@ -73,7 +73,7 @@ const Home = () => {
         </button>
 
         <section className="home__containerProducts">
-          {firterProducts.map((product) => (
+          {filterProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </section>

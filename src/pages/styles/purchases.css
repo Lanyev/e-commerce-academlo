@@ -1,11 +1,25 @@
+:root {
+  /* Colors */
+  --color-blue: #457b9d;
+  --color-blue-light: #a8dadc;
+  --color-blue-dark: #1d3557;
+  --color-red: #e63946;
+  --color-black: #000000;
+  --color-white: #ffffff;
+}
+
 .purchases {
   margin: 0 auto;
   max-width: 1200px;
   padding: 10px;
+  padding-top: 60px;
+  padding-bottom: 50px;
+  color: var(--color-white);
 }
 
 .purchases__list {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  color: var(--color-white);
 }

@@ -37,7 +37,7 @@ const ProductCard = ({ product }) => {
         />
       </header>
       <hr />
-      <div className="productCard__boby">
+      <div className="productCard__body">
         <h3 className="productCard__title">{product.title}</h3>
         <h4 className="productCard__title-price">Price</h4>
         <span className="productCard__price">$ {product.price}</span>

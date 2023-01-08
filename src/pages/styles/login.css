@@ -50,17 +50,17 @@
 .login__title {
   text-align: start;
   font-size: 23px;
-  color: #2b2d42;
+  color: var(--color-blue-dark);
 }
 
 .login__container-test {
-  background-color: #edf2f4;
+  background-color: var(--color-white);
   width: 100%;
   border-radius: 10px;
   text-align: start;
   padding: 0 15px;
   margin-bottom: 20px;
-  color: #2b2d42;
+  color: var(--color-blue-dark);
 }
 
 .login__test-title {
